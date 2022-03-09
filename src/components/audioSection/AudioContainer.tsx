@@ -32,10 +32,6 @@ const AudioContainer = () => {
     }
   }, [currentTime, duration, playingAllTracks, loop]);
 
-  useEffect(() => {
-    console.log(startingTime);
-  }, [startingTime]);
-
   return (
     <div className="audio-container">
       <TimeCursor

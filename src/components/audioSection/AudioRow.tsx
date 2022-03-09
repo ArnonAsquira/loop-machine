@@ -65,6 +65,12 @@ const AudioRow: FC<IAudioRowProps> = ({
     <div className="audio-row" style={{ backgroundColor: color }} key={name}>
       <h2>{name}</h2>
       <button onClick={() => setMute(!mute)}>{mute ? "unmute" : "mute"}</button>
+      <input
+        type="range"
+        min={0}
+        max={100}
+        onChange={(e) => (audioElement.volume = Number(e.target.value) / 100)}
+      />
     </div>
   );
 };

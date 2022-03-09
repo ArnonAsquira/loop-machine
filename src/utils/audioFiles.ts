@@ -18,6 +18,7 @@ const retrieveAudioFiles = async (
 
 const parseAudioFile = (encodedAudioFile: string) => {
   const audioElement = new Audio(`data:audio/mpeg;base64,${encodedAudioFile}`);
+  audioElement.preload = "metadata";
   return audioElement;
 };
 

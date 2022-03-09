@@ -1,4 +1,12 @@
 body {
   background-color: white;
 }
+
+.time-cursor {
+  width: 80vw;
+}
+
+.time-cursor input {
+  width: 100%;
+}
 /*# sourceMappingURL=main.css.map */

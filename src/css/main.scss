@@ -2,6 +2,21 @@ body {
   background-color: white;
 }
 
+@mixin button($button-width, $color, $hover-color, $text-color) {
+  width: $button-width;
+  color: $text-color;
+  background-color: $color;
+  padding: 5%, 10%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+button {
+  @include button(100%, #34495e, #34495e, white);
+}
+
 .time-cursor {
   width: 95vw;
   padding: 0;

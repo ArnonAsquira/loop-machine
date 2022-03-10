@@ -2,6 +2,18 @@ body {
   background-color: white;
 }
 
+button {
+  width: 100%;
+  color: white;
+  background-color: #34495e;
+  padding: 5%, 10%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+button:hover {
+  background-color: #34495e;
+}
+
 .time-cursor {
   width: 95vw;
   padding: 0;

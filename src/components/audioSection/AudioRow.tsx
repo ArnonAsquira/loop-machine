@@ -1,4 +1,5 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import svgDict from "../../constants/svgIcons";
 
 interface IAudioRowProps {
   name: string;
@@ -64,7 +65,9 @@ const AudioRow: FC<IAudioRowProps> = ({
   return (
     <div className="audio-row" style={{ backgroundColor: color }} key={name}>
       <h2>{name}</h2>
-      <button onClick={() => setMute(!mute)}>{mute ? "unmute" : "mute"}</button>
+      <button onClick={() => setMute(!mute)}>
+        {mute ? svgDict["unmute"] : svgDict["mute"]}
+      </button>
       <input
         type="range"
         min={0}

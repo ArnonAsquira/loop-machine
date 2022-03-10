@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 
 interface IControlButtonProp {
-  text: string;
+  text: string | JSX.Element;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 

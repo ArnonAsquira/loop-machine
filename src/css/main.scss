@@ -8,6 +8,7 @@ body {
   background-color: $color;
   padding: 5%, 10%;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  cursor: pointer;
   &:hover {
     background-color: $hover-color;
   }
@@ -73,5 +74,24 @@ button {
   .audio-row {
     margin: 0;
     padding: 0;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    h3 {
+      width: 20%;
+    }
+    button {
+      width: 10%;
+      height: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    input {
+      align-self: flex-end;
+    }
+  }
+  .control-pannel {
+    display: flex;
+    flex-direction: row;
   }
 }

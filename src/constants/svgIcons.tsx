@@ -2,16 +2,16 @@ const svgDict = {
   mute: (
     <img
       src="https://s2.svgbox.net/octicons.svg?ic=mute&color=000"
-      width="32"
-      height="32"
+      width="100%"
+      height="100%"
       alt="mute"
     />
   ),
   unmute: (
     <img
       src="https://s2.svgbox.net/octicons.svg?ic=unmute&color=000"
-      width="32"
-      height="32"
+      width="100%"
+      height="100%"
       alt="unmute"
     />
   ),
@@ -53,6 +53,14 @@ const svgDict = {
       width="32"
       height="32"
       alt="forward 5"
+    />
+  ),
+  loop: (
+    <img
+      src="https://s2.svgbox.net/materialui.svg?ic=loop&color=000"
+      width="32"
+      height="32"
+      alt="loop"
     />
   ),
 };

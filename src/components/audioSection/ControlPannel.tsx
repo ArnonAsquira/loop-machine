@@ -1,4 +1,5 @@
 import { Dispatch, FC, SetStateAction, useCallback } from "react";
+import svgDict from "../../constants/svgIcons";
 import ControlButton from "./ControlButton";
 
 interface IControlPannelProps {
@@ -9,6 +10,7 @@ interface IControlPannelProps {
   setStartingTime: Dispatch<SetStateAction<number>>;
   currentTime: number;
   duration: number;
+  setStop: Dispatch<SetStateAction<boolean>>;
 }
 
 const ControlPannel: FC<IControlPannelProps> = ({
@@ -19,10 +21,11 @@ const ControlPannel: FC<IControlPannelProps> = ({
   setStartingTime,
   currentTime,
   duration,
+  setStop,
 }) => {
   const handleTimeJump = useCallback(
     (origianlTime: number, timeTojump: number, maxTime: number) => {
-      const newTime = origianlTime - timeTojump;
+      const newTime = origianlTime + timeTojump;
       if (newTime < 0) {
         return setStartingTime(0);
       }
@@ -37,21 +40,29 @@ const ControlPannel: FC<IControlPannelProps> = ({
   return (
     <div className="control-pannel">
       <ControlButton
-        text={currentlyPlaying ? "stop" : "play"}
+        text={currentlyPlaying ? svgDict["pause"] : svgDict["play"]}
         onClick={() => {
           setPlaying(!currentlyPlaying);
+          setStop(false);
         }}
       />
       <ControlButton
-        text={isLooping ? "unloop" : "loop"}
+        text={svgDict["stop"]}
+        onClick={() => {
+          setStop(true);
+          setPlaying(false);
+        }}
+      />
+      <ControlButton
+        text={isLooping ? "unloop" : svgDict["loop"]}
         onClick={() => setIsLooping(!isLooping)}
       />
       <ControlButton
-        text={"jump 5 seconds"}
+        text={svgDict["forward5"]}
         onClick={() => handleTimeJump(currentTime, 5, duration)}
       />
       <ControlButton
-        text={"return 5 seconds"}
+        text={svgDict["replay5"]}
         onClick={() => handleTimeJump(currentTime, -5, duration)}
       />
     </div>

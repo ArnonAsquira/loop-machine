@@ -10,6 +10,7 @@ interface IAudioRowProps {
   setDuration: Dispatch<SetStateAction<number>> | null;
   setCurrentTime: Dispatch<SetStateAction<number>> | null;
   updatedCurrentTime: number;
+  stop: boolean;
 }
 
 const AudioRow: FC<IAudioRowProps> = ({
@@ -21,6 +22,7 @@ const AudioRow: FC<IAudioRowProps> = ({
   setDuration,
   setCurrentTime,
   updatedCurrentTime,
+  stop,
 }) => {
   const [mute, setMute] = useState<boolean>(false);
 
@@ -29,7 +31,7 @@ const AudioRow: FC<IAudioRowProps> = ({
       audioElement.play();
     } else {
       audioElement.pause();
-      audioElement.currentTime = 0;
+      // audioElement.currentTime = 0;
     }
   }, [play, audioElement]);
 
@@ -54,6 +56,8 @@ const AudioRow: FC<IAudioRowProps> = ({
     audioElement.currentTime = updatedCurrentTime;
   }, [updatedCurrentTime, audioElement]);
 
+  useEffect(() => {});
+
   useEffect(() => {
     if (setCurrentTime) {
       audioElement.ontimeupdate = () => {
@@ -62,9 +66,16 @@ const AudioRow: FC<IAudioRowProps> = ({
     }
   }, [audioElement, setCurrentTime]);
 
+  useEffect(() => {
+    if (stop) {
+      audioElement.pause();
+      audioElement.currentTime = 0;
+    }
+  }, [stop, audioElement]);
+
   return (
     <div className="audio-row" style={{ backgroundColor: color }} key={name}>
-      <h2>{name}</h2>
+      <h3>{name}</h3>
       <button onClick={() => setMute(!mute)}>
         {mute ? svgDict["unmute"] : svgDict["mute"]}
       </button>

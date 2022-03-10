@@ -8,6 +8,7 @@ button {
   background-color: #34495e;
   padding: 5%, 10%;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  cursor: pointer;
 }
 
 button:hover {
@@ -84,5 +85,39 @@ button:hover {
 .audio-container .audio-row {
   margin: 0;
   padding: 0;
+  height: 10vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.audio-container .audio-row h3 {
+  width: 20%;
+}
+
+.audio-container .audio-row button {
+  width: 10%;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.audio-container .audio-row input {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+.audio-container .control-pannel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 /*# sourceMappingURL=main.css.map */

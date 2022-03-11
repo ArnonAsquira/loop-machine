@@ -132,8 +132,8 @@ button:hover {
 }
 
 .audio-container .audio-row button {
-  width: 10%;
-  height: 80%;
+  width: 7%;
+  height: 50%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -195,6 +195,7 @@ button:hover {
 
 .audio-container .audio-row input[type="range"]::-webkit-slider-thumb {
   border: none;
+  outline: none;
   width: 5px;
   height: 5px;
 }
@@ -244,9 +245,11 @@ button:hover {
 }
 
 .volume-adjuster .volume-indecator {
-  margin-bottom: 10px;
+  padding: 1.5% 10%;
+  margin-bottom: 8px;
   -ms-grid-column-align: center;
       justify-self: center;
+  background-color: #34495e;
 }
 
 .volume-adjuster .volume-slider {

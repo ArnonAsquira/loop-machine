@@ -1,3 +1,3 @@
-const apiBaseUrl = "http://localhost:8080";
+const apiBaseUrl = "https://arnons-moveo-looper-back.herokuapp.com";
 
 export { apiBaseUrl };

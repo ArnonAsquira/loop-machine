@@ -10,4 +10,6 @@ const audioRowColors = [
   "darkred",
 ];
 
-export { audioRowColors };
+const tiksPerSecond = 100;
+
+export { audioRowColors, tiksPerSecond };

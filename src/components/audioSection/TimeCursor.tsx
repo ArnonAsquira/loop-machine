@@ -1,5 +1,6 @@
 import { Dispatch, FC, SetStateAction, useMemo, useRef } from "react";
 import { minutesToSeconds } from "../../utils/general";
+import { tiksPerSecond } from "../../constants/audio";
 
 interface ITimeCursorProps {
   duration: number;
@@ -24,11 +25,12 @@ const TimeCursor: FC<ITimeCursorProps> = ({
       <input
         type="range"
         min={0}
-        max={duration}
+        max={duration * tiksPerSecond}
         ref={curosrRef}
-        value={currentTime}
+        value={currentTime * tiksPerSecond}
         onChange={() => {
-          curosrRef.current && setStartingTime(Number(curosrRef.current.value));
+          curosrRef.current &&
+            setStartingTime(Number(curosrRef.current.value) / tiksPerSecond);
         }}
       />
       <span>{parsedDuration}</span>

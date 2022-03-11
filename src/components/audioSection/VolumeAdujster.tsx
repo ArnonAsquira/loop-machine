@@ -8,8 +8,8 @@ interface IVolumeAdjusterProps {
 const VolumeAdjuster: FC<IVolumeAdjusterProps> = ({ volume, changeVolume }) => {
   return (
     <div className="volume-adjuster">
-      <span>volume-{Math.floor(volume * 100)}</span>
-      <div>
+      <div className="volume-indecator">{Math.floor(volume * 100)}</div>
+      <div className="volume-slider">
         <span>0</span>
         <input
           type="range"

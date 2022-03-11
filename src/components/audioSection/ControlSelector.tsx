@@ -9,7 +9,9 @@ const ControlSelector: FC<IControlSelectorProps> = ({ options, onChange }) => {
   return (
     <select onChange={(e) => onChange(e.target.value)}>
       {options.map((option, i) => (
-        <option key={i}>{option}</option>
+        <option key={i} value={option}>
+          X{option}
+        </option>
       ))}
     </select>
   );

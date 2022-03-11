@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Hubballi&display=swap");
+
 body {
-  background-color: white;
+  background-color: #dfe6e9;
+  font-family: "Hubballi", cursive;
 }
 
 @mixin button($button-width, $color, $hover-color, $text-color) {
@@ -9,18 +12,29 @@ body {
   padding: 5%, 10%;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   cursor: pointer;
+  outline: none;
+  border: none;
+  transition: 0.5s all;
   &:hover {
     background-color: $hover-color;
   }
 }
 
 button {
-  @include button(100%, #34495e, #34495e, white);
+  @include button(100%, #34495e, #31679e, white);
+}
+
+.main-header {
+  text-align: center;
 }
 
 .time-cursor {
-  width: 95vw;
+  width: 97vw;
   padding: 0;
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
 
   input[type="range"] {
     -webkit-appearance: none;
@@ -47,6 +61,8 @@ button {
       width: 1px;
       border-radius: 3px;
       background: #ffffff;
+      border: none;
+      outline: none;
       cursor: pointer;
       margin-top: -14px;
       box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
@@ -74,11 +90,14 @@ button {
   .audio-row {
     margin: 0;
     padding: 0;
-    height: 10vh;
+    height: 9vh;
     display: flex;
     flex-direction: row;
     h3 {
       width: 20%;
+      @media (max-width: 400px) {
+        font-size: 0.75rem;
+      }
     }
     button {
       width: 10%;
@@ -91,6 +110,19 @@ button {
     }
   }
   .control-pannel {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.VolumeAdjuster {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  div {
     display: flex;
     flex-direction: row;
   }

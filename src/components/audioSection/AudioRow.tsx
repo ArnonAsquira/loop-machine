@@ -1,5 +1,6 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import svgDict from "../../constants/svgIcons";
+import VolumeAdjuster from "./VolumeAdujster";
 
 interface IAudioRowProps {
   name: string;
@@ -27,6 +28,7 @@ const AudioRow: FC<IAudioRowProps> = ({
   playbackSpeed,
 }) => {
   const [mute, setMute] = useState<boolean>(false);
+  const [volume, setVolume] = useState<number>(0.5);
 
   useEffect(() => {
     if (play) {
@@ -78,17 +80,19 @@ const AudioRow: FC<IAudioRowProps> = ({
     audioElement.playbackRate = playbackSpeed;
   }, [playbackSpeed, audioElement]);
 
+  useEffect(() => {
+    audioElement.volume = volume;
+  }, [volume, audioElement]);
+
   return (
     <div className="audio-row" style={{ backgroundColor: color }} key={name}>
       <h3>{name}</h3>
       <button onClick={() => setMute(!mute)}>
         {mute ? svgDict["unmute"] : svgDict["mute"]}
       </button>
-      <input
-        type="range"
-        min={0}
-        max={100}
-        onChange={(e) => (audioElement.volume = Number(e.target.value) / 100)}
+      <VolumeAdjuster
+        volume={volume}
+        changeVolume={(newVolume: number) => setVolume(newVolume)}
       />
     </div>
   );

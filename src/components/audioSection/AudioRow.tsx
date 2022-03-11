@@ -11,6 +11,7 @@ interface IAudioRowProps {
   setCurrentTime: Dispatch<SetStateAction<number>> | null;
   updatedCurrentTime: number;
   stop: boolean;
+  playbackSpeed: number;
 }
 
 const AudioRow: FC<IAudioRowProps> = ({
@@ -23,6 +24,7 @@ const AudioRow: FC<IAudioRowProps> = ({
   setCurrentTime,
   updatedCurrentTime,
   stop,
+  playbackSpeed,
 }) => {
   const [mute, setMute] = useState<boolean>(false);
 
@@ -31,7 +33,6 @@ const AudioRow: FC<IAudioRowProps> = ({
       audioElement.play();
     } else {
       audioElement.pause();
-      // audioElement.currentTime = 0;
     }
   }, [play, audioElement]);
 
@@ -72,6 +73,10 @@ const AudioRow: FC<IAudioRowProps> = ({
       audioElement.currentTime = 0;
     }
   }, [stop, audioElement]);
+
+  useEffect(() => {
+    audioElement.playbackRate = playbackSpeed;
+  }, [playbackSpeed, audioElement]);
 
   return (
     <div className="audio-row" style={{ backgroundColor: color }} key={name}>

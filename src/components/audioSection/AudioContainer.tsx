@@ -15,10 +15,7 @@ const AudioContainer = () => {
   const [playingAllTracks, setPlayAllTracks] = useState<boolean>(false);
   const [loop, setLoop] = useState<boolean>(false);
   const [stop, setStop] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   console.log({ startingTime });
-  // }, [startingTime]);
+  const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
 
   useEffect(() => {
     const createAudioElements = async () => {
@@ -56,6 +53,7 @@ const AudioContainer = () => {
           setCurrentTime={i === 0 ? setCurrentTime : null}
           updatedCurrentTime={startingTime}
           stop={stop}
+          playbackSpeed={playbackSpeed}
         />
       ))}
       <ControlPannel
@@ -67,6 +65,7 @@ const AudioContainer = () => {
         currentTime={currentTime}
         duration={duration}
         setStop={setStop}
+        setPlaybackSpeed={setPlaybackSpeed}
       />
     </div>
   );

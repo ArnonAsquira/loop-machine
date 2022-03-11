@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction, useCallback } from "react";
 import svgDict from "../../constants/svgIcons";
 import ControlButton from "./ControlButton";
+import ControlSelector from "./ControlSelector";
 
 interface IControlPannelProps {
   setPlaying: Dispatch<SetStateAction<boolean>>;
@@ -11,6 +12,7 @@ interface IControlPannelProps {
   currentTime: number;
   duration: number;
   setStop: Dispatch<SetStateAction<boolean>>;
+  setPlaybackSpeed: Dispatch<SetStateAction<number>>;
 }
 
 const ControlPannel: FC<IControlPannelProps> = ({
@@ -22,6 +24,7 @@ const ControlPannel: FC<IControlPannelProps> = ({
   currentTime,
   duration,
   setStop,
+  setPlaybackSpeed,
 }) => {
   const handleTimeJump = useCallback(
     (origianlTime: number, timeTojump: number, maxTime: number) => {
@@ -35,6 +38,17 @@ const ControlPannel: FC<IControlPannelProps> = ({
       return setStartingTime(newTime);
     },
     [setStartingTime]
+  );
+
+  const handleChangePlaybackSpeed = useCallback(
+    (value: string) => {
+      if (!Number(value)) {
+        return;
+      } else {
+        setPlaybackSpeed(Number(value));
+      }
+    },
+    [setPlaybackSpeed]
   );
 
   return (
@@ -64,6 +78,10 @@ const ControlPannel: FC<IControlPannelProps> = ({
       <ControlButton
         text={svgDict["replay5"]}
         onClick={() => handleTimeJump(currentTime, -5, duration)}
+      />
+      <ControlSelector
+        options={["1", "1.5", "2", "0.5"]}
+        onChange={handleChangePlaybackSpeed}
       />
     </div>
   );

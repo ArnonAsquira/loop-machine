@@ -261,4 +261,9 @@ button:hover {
       -ms-flex-direction: row;
           flex-direction: row;
 }
+
+.volume-adjuster .volume-slider span {
+  width: 100%;
+  height: 3vh;
+}
 /*# sourceMappingURL=main.css.map */

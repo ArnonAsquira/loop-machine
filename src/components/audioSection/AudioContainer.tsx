@@ -16,10 +16,13 @@ const AudioContainer = () => {
   const [loop, setLoop] = useState<boolean>(false);
   const [stop, setStop] = useState<boolean>(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
+  const [loading, setLoading] = useState<string | null>(null);
 
   useEffect(() => {
     const createAudioElements = async () => {
+      setLoading("loading audio files");
       const audioFiles = await retrieveAudioFiles(apiBaseUrl);
+      setLoading(null);
       if (typeof audioFiles === "string") {
         return setAudioFiles([]);
       }
@@ -67,6 +70,7 @@ const AudioContainer = () => {
         setStop={setStop}
         setPlaybackSpeed={setPlaybackSpeed}
       />
+      {loading}
     </div>
   );
 };

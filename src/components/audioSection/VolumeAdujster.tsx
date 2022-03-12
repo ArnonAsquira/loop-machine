@@ -1,4 +1,5 @@
 import { FC } from "react";
+import svgDict from "../../constants/svgIcons";
 
 interface IVolumeAdjusterProps {
   volume: number;
@@ -15,14 +16,14 @@ const VolumeAdjuster: FC<IVolumeAdjusterProps> = ({ volume, changeVolume }) => {
         {Math.floor(volume * 100)}
       </div>
       <div className="volume-slider">
-        <span>0</span>
+        <span>{svgDict["mute"]}</span>
         <input
           type="range"
           min={0}
           max={100}
           onChange={(e) => changeVolume(Number(e.target.value) / 100)}
         />
-        <span>100</span>
+        <span>{svgDict["unmute"]}</span>
       </div>
     </div>
   );

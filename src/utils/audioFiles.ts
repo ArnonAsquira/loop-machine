@@ -3,7 +3,7 @@ import { IAudioElementObj, IAudioFileObj } from "../types/audioTypes";
 
 const retrieveAudioFiles = async (
   url: string
-): Promise<IAudioElementObj[] | string> => {
+): Promise<IAudioElementObj[] | never> => {
   try {
     const { data }: { data: IAudioFileObj[] } = await axios.get(`${url}/audio`);
     const decodedAudioFiles = data.map((audioFileObj) => ({
@@ -12,7 +12,7 @@ const retrieveAudioFiles = async (
     }));
     return decodedAudioFiles;
   } catch (err) {
-    return "could not retrieve audio files";
+    throw err;
   }
 };
 

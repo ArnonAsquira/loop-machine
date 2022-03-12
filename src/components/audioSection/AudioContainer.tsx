@@ -16,21 +16,29 @@ const AudioContainer = () => {
   const [loop, setLoop] = useState<boolean>(false);
   const [stop, setStop] = useState<boolean>(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
-  const [loading, setLoading] = useState<string | null>(null);
+  const [loading, setLoading] = useState<string | null>("loading audio files");
 
+  // loads the mp3 files
   useEffect(() => {
     const createAudioElements = async () => {
-      setLoading("loading audio files");
-      const audioFiles = await retrieveAudioFiles(apiBaseUrl);
-      setLoading(null);
-      if (typeof audioFiles === "string") {
-        return setAudioFiles([]);
+      try {
+        const audioFiles = await retrieveAudioFiles(apiBaseUrl);
+        setAudioFiles(audioFiles);
+      } catch (err) {
+        return alert("an error has occured trying to load the mp3 files");
       }
-      setAudioFiles(audioFiles);
     };
     createAudioElements();
   }, []);
 
+  // sets the loading messsage if the files were not loaded yet
+  useEffect(() => {
+    if (audioFiles.length < 1) {
+      setLoading(null);
+    }
+  }, [audioFiles]);
+
+  // handles reaching end of track
   useEffect(() => {
     if (currentTime >= duration && playingAllTracks && !loop) {
       setPlayAllTracks(false);
@@ -40,6 +48,7 @@ const AudioContainer = () => {
 
   return (
     <div className="audio-container">
+      {loading ? <div className="loader">{loading}</div> : null}
       <TimeCursor
         duration={duration}
         currentTime={currentTime}
@@ -70,7 +79,6 @@ const AudioContainer = () => {
         setStop={setStop}
         setPlaybackSpeed={setPlaybackSpeed}
       />
-      {loading}
     </div>
   );
 };

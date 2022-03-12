@@ -121,6 +121,11 @@ button:hover {
           flex-direction: row;
 }
 
+.audio-container .audio-row .loader {
+  position: absolute;
+  margin: auto auto;
+}
+
 .audio-container .audio-row h3 {
   width: 20%;
 }
@@ -260,6 +265,10 @@ button:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.volume-adjuster .volume-slider input {
+  width: 10vw;
 }
 
 .volume-adjuster .volume-slider span {

@@ -30,6 +30,7 @@ const AudioRow: FC<IAudioRowProps> = ({
   const [mute, setMute] = useState<boolean>(false);
   const [volume, setVolume] = useState<number>(0.5);
 
+  // play/stop functionality
   useEffect(() => {
     if (play) {
       audioElement.play();
@@ -38,14 +39,17 @@ const AudioRow: FC<IAudioRowProps> = ({
     }
   }, [play, audioElement]);
 
+  // loop functionality
   useEffect(() => {
     audioElement.loop = loop;
   }, [loop, audioElement]);
 
+  // mute functionality
   useEffect(() => {
     audioElement.muted = mute;
   }, [mute, audioElement]);
 
+  // setting the duration of the tracks
   useEffect(() => {
     if (setDuration) {
       audioElement.onloadedmetadata = () => {
@@ -55,12 +59,12 @@ const AudioRow: FC<IAudioRowProps> = ({
     }
   }, [audioElement, setDuration]);
 
+  // updating the currentTime of the tracks
   useEffect(() => {
     audioElement.currentTime = updatedCurrentTime;
   }, [updatedCurrentTime, audioElement]);
 
-  useEffect(() => {});
-
+  // controling the current time of the tracks from the father component
   useEffect(() => {
     if (setCurrentTime) {
       audioElement.ontimeupdate = () => {
@@ -69,6 +73,7 @@ const AudioRow: FC<IAudioRowProps> = ({
     }
   }, [audioElement, setCurrentTime]);
 
+  // stop tracks functionalitys
   useEffect(() => {
     if (stop) {
       audioElement.pause();
@@ -76,10 +81,12 @@ const AudioRow: FC<IAudioRowProps> = ({
     }
   }, [stop, audioElement]);
 
+  // playback speed adjustment functionality
   useEffect(() => {
     audioElement.playbackRate = playbackSpeed;
   }, [playbackSpeed, audioElement]);
 
+  // volume speed adjustment functionality
   useEffect(() => {
     audioElement.volume = volume;
   }, [volume, audioElement]);

@@ -16,7 +16,9 @@ const AudioContainer = () => {
   const [loop, setLoop] = useState<boolean>(false);
   const [stop, setStop] = useState<boolean>(false);
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(1);
-  const [loading, setLoading] = useState<string | null>("loading audio files");
+  const [loading, setLoading] = useState<string | null>(
+    "loading audio files from server..."
+  );
 
   // loads the mp3 files
   useEffect(() => {
@@ -33,7 +35,7 @@ const AudioContainer = () => {
 
   // sets the loading messsage if the files were not loaded yet
   useEffect(() => {
-    if (audioFiles.length < 1) {
+    if (audioFiles.length > 0) {
       setLoading(null);
     }
   }, [audioFiles]);
@@ -46,9 +48,13 @@ const AudioContainer = () => {
     }
   }, [currentTime, duration, playingAllTracks, loop]);
 
-  return (
+  return loading ? (
+    <div className="loader">
+      {loading}
+      <div className="lds-dual-ring"></div>
+    </div>
+  ) : (
     <div className="audio-container">
-      {loading ? <div className="loader">{loading}</div> : null}
       <TimeCursor
         duration={duration}
         currentTime={currentTime}
